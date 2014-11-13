@@ -1,6 +1,7 @@
-import java.util.ArrayList;
+import java.util.*;
 
-public class ArraysAreCool{
+public class ArrayListMethods{
+    
     // Modify the list so that consecutive duplicates are removed
     public static void collapseDuplicates(ArrayList<Integer> L){ // went with static. 
 	for (int i = 0; i < L.size()-1; i++){
@@ -9,6 +10,10 @@ public class ArraysAreCool{
 		i--; // want to stay on index of beginning of consecutive dups until only one remains. 
 	    }
 	}
+    }
+    public static void randomize( ArrayList<Integer> L) { 
+	for (int i = 0; i < L.size(); i++){
+	    L.set()
     }
 
     public static void main(String[]args){
