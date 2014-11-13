@@ -11,31 +11,34 @@ public class ArrayListMethods{
 	    }
 	}
     }
-    public static void randomize( ArrayList<Integer> L) { 
+    public static void randomize( ArrayList<Integer> L) {
+	Random r = new Random();
 	for (int i = 0; i < L.size(); i++){
-	    L.set()
+	    int x = L.get(r.nextInt(L.size()-i) + i);
+	    int y = L.get(i);
+	    int flip = L.indexOf(x); // tells us where to put y. 
+	    L.set(i, x);
+	    L.set(flip, y);
+	}
     }
 
     public static void main(String[]args){
+	Random r = new Random();
 	ArrayList<Integer> L = new ArrayList<Integer>();
-	L.add(new Integer(1));
-	L.add(new Integer(1));
-	L.add(new Integer(1));
-	L.add(new Integer(3));
-	L.add(new Integer(2));
-	L.add(new Integer(2));
-	L.add(new Integer(8));
-	L.add(new Integer(9));
-	L.add(new Integer(9));
-	L.add(new Integer(4));
-	L.add(new Integer(4));
-	L.add(new Integer(7)); // lucky 7s!
-	L.add(new Integer(7));
-	L.add(new Integer(7));
-	// -----------------//
+	
+	// Testing collapseDuplicates(L)...
+	for (int i = 0; i < 15; i += r.nextInt(5) ){
+	    int reps = r.nextInt(4)+1;
+	    while (reps > 0){
+		L.add(new Integer(i));
+		reps --;
+	    }
+	}
 	System.out.println(L); //toString() not needed. cool. 
 	collapseDuplicates(L);
-       	System.out.println("Expecting [1, 3, 2, 8, 9, 4, 7]... \n" + L);
+       	System.out.println(L);
+
+	//
     }
 }
     
