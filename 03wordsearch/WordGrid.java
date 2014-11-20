@@ -90,7 +90,7 @@ public class WordGrid{
         if (row >= data.length || col >= data[row].length){
 	    throw new ArrayIndexOutOfBoundsException();
 	}  
-	if (word.length() > data[col].length - row){
+	if (word.length() > data.length - row){
 	    return result;
 	}
 	for (int pos = 0; pos < word.length(); pos++){
@@ -105,6 +105,9 @@ public class WordGrid{
 	return result;
     }
 
+    // Will do diagonal another time... I can't spend more time on this...
+
+    // Time to check!
     public static void main(String[] args){
 	WordGrid firstTry = new WordGrid(5,5);
 	System.out.println(firstTry.toString());
@@ -127,16 +130,28 @@ public class WordGrid{
 
 
 	    // addWordVertical
-	    System.out.println("trying addWordVertical (false): " + firstTry.addWordHorizontal("pizza",3,3) );
-	    System.out.println("trying addWordVertical (false): " + firstTry.addWordHorizontal("pizza",3,0) );
-	    System.out.println("trying addWordVertical (false): " + firstTry.addWordHorizontal("pizzas",4,0) );
-	    System.out.println("trying addWordVertical (true): " + firstTry.addWordHorizontal("hi",3,3) );
-	    System.out.println("trying addWordVertical (true): " + firstTry.addWordHorizontal("pizza",4,0) );
-	    System.out.println("trying addWordVertical (true): " + firstTry.addWordHorizontal("yay",2,1) );
-	    System.out.println("trying addWordVertical (false): " + firstTry.addWordHorizontal("pizza",0,1) );
+	    System.out.println("trying addWordVertical (false): " + firstTry.addWordVertical("pizza",3,3) );
+	    System.out.println("trying addWordVertical (false): " + firstTry.addWordVertical("pizza",3,0) );
+	    System.out.println("trying addWordVertical (false): " + firstTry.addWordVertical("pizzas",4,0) );
+	    System.out.println("trying addWordVertical (true): " + firstTry.addWordVertical("hi",3,3) );
+	    System.out.println("trying addWordVertical (false): " + firstTry.addWordVertical("pizza",0,3) );	    
+	    System.out.println("trying addWordVertical (true): " + firstTry.addWordVertical("pizza",0,4) );
+	    System.out.println("trying addWordVertical (true): " + firstTry.addWordVertical("yay",2,1) );
+	    System.out.println("trying addWordVertical (false): " + firstTry.addWordVertical("pizza",0,1) );
+
+	    	    
+	    // let's see how it looks, then clear it to try something else
+	    System.out.println(firstTry.toString() +"\n\n");
+	    System.out.println("trying addWordHorizontal (false): " + firstTry.addWordHorizontal("pizza",4,0) );
+	    System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("pop",0,2) );
+	    System.out.println(firstTry.toString() +"\n\n"); // should have pop and pizza crossing...
+
+	    firstTry.clear();
 	} catch (ArrayIndexOutOfBoundsException e){
 	    System.out.println("Oops. Tried to access either a non-existant row or column. Fix this!");
 	}
+
+
 
     }
 	
