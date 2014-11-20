@@ -53,21 +53,22 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordHorizontal(String word,int row, int col){
-	boolean result = true;
-	if (word > data[row].length) {
-	    result = false;
+	boolean result = false;
+        if (row >= data.length || col >= data[row].length){
+	    throw new ArrayIndexOutOfBoundsException();
+	}  
+	if (word.length() > data[row].length - col){
 	    return result;
 	}
-	for (int boxPos = col && int wordPos = 0; start < word.length(); start++ && wordPos++){
-	    if (data[row][boxPos] == ' ' || word.chatAt(wordPos) == data[row][boxPos] ){
-		data[row][boxPos] == word.charAt(wordPos);
-	    } else{
-		result = false;
+	for (int pos = 0; pos < word.length(); pos++){
+	    if (data[row][col+pos] != ' ' &&  word.charAt(pos) != data[row][col+pos] ){
 		return result;
 	    }
 	}
-
-
+	for (int pos = 0; pos < word.length(); pos++){
+	    data[row][col+pos] = word.charAt(pos);
+	}
+	result = true;
 	return result;
     }
 
@@ -77,7 +78,19 @@ public class WordGrid{
 	WordGrid firstTry = new WordGrid(5,5);
 	System.out.println(firstTry.toString());
 	firstTry.clear();
-	System.out.println("new box..." + firstTry.toString() + "...end of new box");
+	System.out.println("new box..." + firstTry.toString() + "...end of new box \n");
+	try {
+	System.out.println("trying addWordHorizontal (false): " + firstTry.addWordHorizontal("pizza",3,3) );
+	System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("pizza",3,0) );
+	System.out.println("trying addWordHorizontal (false): " + firstTry.addWordHorizontal("pizzas",4,0) );
+	System.out.println("trying addWordHorizontal (false): " + firstTry.addWordHorizontal("hi",3,3) );
+	System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("hi",4,3) );
+	System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("yay",2,1) );
+	System.out.println("trying addWordHorizontal (false): " + firstTry.addWordHorizontal("pizza",2,0) );
+	} catch (ArrayIndexOutOfBoundsException e){
+	    System.out.println("Oops. Tried to access either a non-existant row or column. Fix this!");
+	}
+
     }
 	
 
