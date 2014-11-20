@@ -25,7 +25,16 @@ public class WordGrid{
      *separated by newlines.
      */
     public String toString(){
+	String result = "";
+	for (int row = 0; row < data.length; row++){
+	    for (int i = 0; i < data[row].length; i++){
+		result += data[row][i];
+	    }
+	    result += "\n";
+	}
+	return result;
     }
+	
 
     /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from left to right, must fit on the WordGrid, and must
@@ -38,6 +47,7 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordHorizontal(String word,int row, int col){
+	return false;
     }
 
     //vertical + diagonal should be implemented as well.
