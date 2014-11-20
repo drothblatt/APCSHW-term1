@@ -52,4 +52,11 @@ public class WordGrid{
 
     //vertical + diagonal should be implemented as well.
 
+    public static void main(String[] args){
+	WordGrid firstTry = new WordGrid(5,5);
+	System.out.println(firstTry.toString());
+	System.out.println(firstTry.clear());
+    }
+	
+
 }
