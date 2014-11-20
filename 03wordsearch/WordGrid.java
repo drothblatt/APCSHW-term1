@@ -105,7 +105,37 @@ public class WordGrid{
 	return result;
     }
 
-    // Will do diagonal another time... I can't spend more time on this...
+
+   /**Attempts to add a given word to the specified position of the WordGrid.
+     *The word is added from left-top to bottom-right, must fit on the WordGrid, and must
+     *have a corresponding letter to match any letters that it overlaps.
+     *
+     *@param word is any text to be added to the word grid.
+     *@param row is the vertical locaiton of where you want the word to start.
+     *@param col is the horizontal location of where you want the word to start.
+     *@return true when the word is added successfully. When the word doesn't fit,
+     *or there are overlapping letters that do not match, then false is returned.
+     */
+
+    public boolean addWordDiagonal(String word,int row, int col){
+	boolean result = false;
+        if (row >= data.length || col >= data[row].length){
+	    throw new ArrayIndexOutOfBoundsException();
+	}  
+	if (word.length() > data.length - row){
+	    return result;
+	}
+	for (int pos = 0; pos < word.length(); pos++){
+	    if (data[row+pos][col+pos] != ' ' &&  word.charAt(pos) != data[row+pos][col+pos] ){
+		return result;
+	    }
+	}
+	for (int pos = 0; pos < word.length(); pos++){
+	    data[row+pos][col+pos] = word.charAt(pos);
+	}
+	result = true;
+	return result;
+    }
 
     // Time to check!
     public static void main(String[] args){
@@ -145,8 +175,29 @@ public class WordGrid{
 	    System.out.println("trying addWordHorizontal (false): " + firstTry.addWordHorizontal("pizza",4,0) );
 	    System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("pop",0,2) );
 	    System.out.println(firstTry.toString() +"\n\n"); // should have pop and pizza crossing...
-
 	    firstTry.clear();
+
+	    // addWordDiagonal
+	    System.out.println("trying addWordDiagonal (false): " + firstTry.addWordDiagonal("pizza",3,3) );
+	    System.out.println("trying addWordDiagonal (false): " + firstTry.addWordDiagonal("pizza",3,0) );
+	    System.out.println("trying addWordDiagonal (false): " + firstTry.addWordDiagonal("pizzas",4,0) );
+	    System.out.println("trying addWordDiagonal (false): " + firstTry.addWordDiagonal("pizza",1,3) );
+	    System.out.println("trying addWordDiagonal (true): " + firstTry.addWordDiagonal("pizza",0,0) );
+	    System.out.println(firstTry.toString() +"\n");
+	    firstTry.clear();
+	    System.out.println("trying addWordDiagonal (true): " + firstTry.addWordDiagonal("hit",2,2) );
+	    System.out.println("trying addWordDiagonal (true): " + firstTry.addWordDiagonal("yay",0,2) );
+	    System.out.println("trying addWordDiagonal (false): " + firstTry.addWordDiagonal("pizza",2,1) );
+	    //addWord("pizza",0,1) --> error...why?... should just be false. 
+
+	    System.out.println(firstTry.toString() +"\n\n");
+	    System.out.println("trying addWordHorizontal (false): " + firstTry.addWordHorizontal("pizza",4,0) );
+	    System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("fight",4,0) );
+	    System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("great",1,0) );
+
+	    System.out.println(firstTry.toString() +"\n\n"); // should have hit and fight meeting at bottom right...
+	    firstTry.clear();
+
 	} catch (ArrayIndexOutOfBoundsException e){
 	    System.out.println("Oops. Tried to access either a non-existant row or column. Fix this!");
 	}
