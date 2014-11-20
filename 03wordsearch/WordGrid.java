@@ -8,9 +8,15 @@ public class WordGrid{
      */
     public WordGrid(int rows,int cols){
 	data = new char[rows][cols];
+	for (int row = 0; row < data.length; row++){
+	    for (int i = 0; i < data[row].length; i++){
+		data[row][i] = '_';
+	    }
+	}
+	
     }
 
-    /**Set all values in the WordGrid to spaces ' '*/
+    /**Set all values in the WordGrid to spaces ' ' */
     private void clear(){
 	for (int row = 0; row < data.length; row++){
 	    for (int i = 0; i < data[row].length; i++){
@@ -28,7 +34,7 @@ public class WordGrid{
 	String result = "";
 	for (int row = 0; row < data.length; row++){
 	    for (int i = 0; i < data[row].length; i++){
-		result += data[row][i];
+		result += data[row][i] + " ";
 	    }
 	    result += "\n";
 	}
@@ -47,7 +53,22 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordHorizontal(String word,int row, int col){
-	return false;
+	boolean result = true;
+	if (word > data[row].length) {
+	    result = false;
+	    return result;
+	}
+	for (int boxPos = col && int wordPos = 0; start < word.length(); start++ && wordPos++){
+	    if (data[row][boxPos] == ' ' || word.chatAt(wordPos) == data[row][boxPos] ){
+		data[row][boxPos] == word.charAt(wordPos);
+	    } else{
+		result = false;
+		return result;
+	    }
+	}
+
+
+	return result;
     }
 
     //vertical + diagonal should be implemented as well.
@@ -55,7 +76,8 @@ public class WordGrid{
     public static void main(String[] args){
 	WordGrid firstTry = new WordGrid(5,5);
 	System.out.println(firstTry.toString());
-	System.out.println(firstTry.clear());
+	firstTry.clear();
+	System.out.println("new box..." + firstTry.toString() + "...end of new box");
     }
 	
 
