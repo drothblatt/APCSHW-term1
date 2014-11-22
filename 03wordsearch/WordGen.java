@@ -4,15 +4,11 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class WordGen{
-
-
-
+    ArrayList<String> words = new ArrayList<String>();
 
     public static void fileToArrayList() throws FileNotFoundException{
 	File text = new File("words.txt");
 	Scanner s = new Scanner(text);
-    
-	ArrayList<String> words = new ArrayList<String>();
     
 	while(s.hasNextLine()){
 	    String nextWord = s.nextLine();
@@ -20,11 +16,19 @@ public class WordGen{
 	}
     }
 
+    public static String toString(){
+	String result = "[ ";
+       	for (int i = 0; i < words.length; i++){
+	    result += words.get(i) + " ";
+	}
+	result += "]";
+	return result;
+    }
     public static void main(String[]args) throws FileNotFoundException{
 	fileToArrayList();
-	for (int i = 0; i < words.length; i++){
+	toString();
 
-	}
+
 	
     }
 }
