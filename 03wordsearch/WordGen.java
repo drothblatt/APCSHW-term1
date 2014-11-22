@@ -43,8 +43,8 @@ public class WordGen{
 			for (int col = 0; col < maxSize; col++){
 			    try{
 				if (!alreadyUsed.contains(words.get(i))){
-				    gen.addWordVertical(words.get(i),row,col);
-				    alreadyUsed.add(words.get(i));
+				    if (gen.addWordVertical(words.get(i),row,col))
+					alreadyUsed.add(words.get(i));
 				}
 			    } catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
@@ -56,8 +56,8 @@ public class WordGen{
 			for (int col = 0; col < maxSize; col++){
 			    try{
 				if (!alreadyUsed.contains(words.get(i))){
-				    gen.addWordHorizontal(words.get(i),row,col);
-				    alreadyUsed.add(words.get(i));
+				    if (gen.addWordHorizontal(words.get(i),row,col))
+					alreadyUsed.add(words.get(i));
 				}
 			    }catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
@@ -69,8 +69,8 @@ public class WordGen{
 			for (int col = 0; col < maxSize; col++){
 			    try{
 				if (!alreadyUsed.contains(words.get(i))){
-				    gen.addWordDiagonal(words.get(i),row,col);
-				    alreadyUsed.add(words.get(i));
+				    if (gen.addWordDiagonal(words.get(i),row,col))
+					alreadyUsed.add(words.get(i));
 				}
 			    }catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
@@ -82,8 +82,8 @@ public class WordGen{
 			for (int col = 0; col < maxSize; col++){
 			    try{
 				if (!alreadyUsed.contains(words.get(i))){
-				    gen.addWordVerticalRev(words.get(i),row,col);
-				    alreadyUsed.add(words.get(i));
+				    if (gen.addWordVerticalRev(words.get(i),row,col))
+					alreadyUsed.add(words.get(i));
 				}
 			    } catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
@@ -95,8 +95,8 @@ public class WordGen{
 			for (int col = 0; col < maxSize; col++){
 			    try{
 				if (!alreadyUsed.contains(words.get(i))){
-				    gen.addWordHorizontalRev(words.get(i),row,col);
-				    alreadyUsed.add(words.get(i));
+				    if(gen.addWordHorizontalRev(words.get(i),row,col))
+					alreadyUsed.add(words.get(i));
 				}			   
 			    } catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("out of bounds");
@@ -108,6 +108,15 @@ public class WordGen{
 	}
 	gen.fillRest();
 	System.out.println(gen.toString());
+	String result = "[ ";
+	for (int i = 0; i < alreadyUsed.size(); i++){
+	    result += alreadyUsed.get(i) + " ";
+	}
+	result += "]";
+	System.out.println("words: " + result);
+	 
+	    
+	System.out.println("# of words: " + alreadyUsed.size()); 
     }
     
     public static void main(String[]args) throws FileNotFoundException{
