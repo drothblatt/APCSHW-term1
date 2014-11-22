@@ -148,12 +148,12 @@ public class WordGrid{
 	    
 
     /**Attempts to add a given word to the specified position of the WordGrid.
-     *The word is added from left to right, must fit on the WordGrid, and must
+     *The word is added from RIGHT to LEFT, must fit on the WordGrid, and must
      *have a corresponding letter to match any letters that it overlaps.
      *
      *@param word is any text to be added to the word grid.
-     *@param row is the vertical locaiton of where you want the word to start.
-     *@param col is the horizontal location of where you want the word to start.
+     *@param row is the vertical locaiton of where you want the FIRST LETTER of the ORIGINAL word to start.
+     *@param col is the horizontal location of where you want the FIRST LETTER of the ORIGINAL word to start.
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
@@ -163,18 +163,60 @@ public class WordGrid{
 	return addWordHorizontal(reverse(word),row,col);
     }
 
+    /**Attempts to add a given word to the specified position of the WordGrid.<br>
+     *The word is added from DOWN to UP, must fit on the WordGrid, and must
+     *have a corresponding letter to match any letters that it overlaps.
+     *
+     *@param word is any text to be added to the word grid.
+     *@param row is the vertical locaiton of where you want the FIRST LETTER of the ORIGINAL word to start.
+     *@param col is the horizontal location of where you want the FIRST LETTER of the ORIGINAL word to start.
+     *@return true when the word is added successfully. When the word doesn't fit,
+     *or there are overlapping letters that do not match, then false is returned.
+     */
+
     public boolean addWordVerticalRev(String word, int row, int col){
 	row = row - word.length()+1;
 	return addWordVertical(reverse(word),row,col);
     }
 
+    /**Attempts to add a given word to the specified position of the WordGrid.
+     *The word is added from RIGHT-DOWN to LEFT-TOP, must fit on the WordGrid, and must
+     *have a corresponding letter to match any letters that it overlaps.
+     *
+     *@param word is any text to be added to the word grid.
+     *@param row is the vertical locaiton of where you want the FIRST LETTER of the ORIGINAL word to start.
+     *@param col is the horizontal location of where you want the FIRST LETTER of the ORIGINAL word to start.
+     *@return true when the word is added successfully. When the word doesn't fit,
+     *or there are overlapping letters that do not match, then false is returned.
+     */
+
+    public boolean addWordDiagonalRev(String word, int row, int col){
+	word = reverse(word);
+	row = row - word.length()+1;
+	col = col - word.length()+1;
+	boolean result = false;
+        if (row >= data.length || col >= data[row].length){
+	    throw new ArrayIndexOutOfBoundsException();
+	}  
+	if (word.length() > data.length - row){
+	    return result;
+	}
+	for (int pos = 0; pos > word.length()*-1; pos--){ // pos should be negative in this case
+	    if (data[row+pos][col+pos] != ' ' &&  word.charAt(pos) != data[row+pos][col+pos] ){
+		return result;
+	    }
+	}
+	for (int pos = 0; pos < word.length(); pos++){
+	    data[row+pos][col+pos] = word.charAt(pos);
+	}
+	result = true;
+	return result;
+    }
 
 
 
 
-
-
-
+    /***************************************/
 
     // Time to check!
     public static void main(String[] args){
@@ -237,12 +279,14 @@ public class WordGrid{
 	    System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("fight",4,0) );
 	    System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("great",1,0) );
 
-	    
+	    System.out.println("testing the reverse versions...");
 	    System.out.println("trying addWordHorizontalRev (true): " + firstTry.addWordHorizontalRev("tilt",3,4) );
 	    System.out.println(firstTry.toString() +"\n\n"); // should have hit and fight meeting at bottom right...
 
 	    firstTry.clear();
 	    System.out.println("trying addWordVerticalRev (true): " + firstTry.addWordVerticalRev("goof",4,0) );
+	    System.out.println("trying addWordDiagonalRev (true): " + firstTry.addWordDiagonalRev("boing",4,4) );
+
 	    System.out.println(firstTry.toString()); 
 
 	    firstTry.clear();
