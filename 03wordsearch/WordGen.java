@@ -32,6 +32,8 @@ public class WordGen{
 	String largestWord = words.get(r.nextInt(words.size()));
 	int maxSize = largestWord.length();
 	WordGrid gen = new WordGrid(maxSize,maxSize);
+        ArrayList<String> alreadyUsed = new ArrayList<String>();
+
 
 	for (int i = 0; i < words.size(); i++){
 	    if ((words.get(i)).length() <= maxSize){
@@ -40,7 +42,10 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				gen.addWordVertical(words.get(i),row,col);
+				if (!alreadyUsed.contains(words.get(i))){
+				    gen.addWordVertical(words.get(i),row,col);
+				    alreadyUsed.add(words.get(i));
+				}
 			    } catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
 			    }
@@ -50,7 +55,10 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				gen.addWordHorizontal(words.get(i),row,col);
+				if (!alreadyUsed.contains(words.get(i))){
+				    gen.addWordHorizontal(words.get(i),row,col);
+				    alreadyUsed.add(words.get(i));
+				}
 			    }catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
 			    }
@@ -60,7 +68,10 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				gen.addWordDiagonal(words.get(i),row,col);
+				if (!alreadyUsed.contains(words.get(i))){
+				    gen.addWordDiagonal(words.get(i),row,col);
+				    alreadyUsed.add(words.get(i));
+				}
 			    }catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
 			    }
@@ -70,7 +81,10 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				gen.addWordVerticalRev(words.get(i),row,col);
+				if (!alreadyUsed.contains(words.get(i))){
+				    gen.addWordVerticalRev(words.get(i),row,col);
+				    alreadyUsed.add(words.get(i));
+				}
 			    } catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
 			    }
@@ -80,9 +94,12 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				gen.addWordHorizontalRev(words.get(i),row,col);
+				if (!alreadyUsed.contains(words.get(i))){
+				    gen.addWordHorizontalRev(words.get(i),row,col);
+				    alreadyUsed.add(words.get(i));
+				}			   
 			    } catch (ArrayIndexOutOfBoundsException e){
-				System.out.println("");
+				System.out.println("out of bounds");
 			    }
 			}
 		    }
@@ -90,11 +107,12 @@ public class WordGen{
 	    }
 	}
 	gen.fillRest();
-	gen.toString();
+	System.out.println(gen.toString());
     }
     
     public static void main(String[]args) throws FileNotFoundException{
 	fileToArrayList();
 	System.out.println(arrayListToString());
+	addWordsToGrid();
     }
 }
