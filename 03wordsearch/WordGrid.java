@@ -158,10 +158,15 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
 
-    //public boolean addWordHorizontalRev(String word, int row, int col){
-	
-    // }
+    public boolean addWordHorizontalRev(String word, int row, int col){
+	col = col - word.length()+1;
+	return addWordHorizontal(reverse(word),row,col);
+    }
 
+    public boolean addWordVerticalRev(String word, int row, int col){
+	row = row - word.length()+1;
+	return addWordVertical(reverse(word),row,col);
+    }
 
 
 
@@ -232,7 +237,14 @@ public class WordGrid{
 	    System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("fight",4,0) );
 	    System.out.println("trying addWordHorizontal (true): " + firstTry.addWordHorizontal("great",1,0) );
 
+	    
+	    System.out.println("trying addWordHorizontalRev (true): " + firstTry.addWordHorizontalRev("tilt",3,4) );
 	    System.out.println(firstTry.toString() +"\n\n"); // should have hit and fight meeting at bottom right...
+
+	    firstTry.clear();
+	    System.out.println("trying addWordVerticalRev (true): " + firstTry.addWordVerticalRev("goof",4,0) );
+	    System.out.println(firstTry.toString()); 
+
 	    firstTry.clear();
 
 	} catch (ArrayIndexOutOfBoundsException e){
