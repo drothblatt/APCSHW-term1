@@ -1,5 +1,11 @@
+import java.util.Random;
+
 public class WordGrid{
     private char[][]data;
+    private char[] alphabet = {'a','b','c','d','e','f','g','h',
+			       'i','j','k','l','m','n','o','p',
+			       'q','r','s','t','u','v','w','x',
+			       'y','z'};
 
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
@@ -9,8 +15,8 @@ public class WordGrid{
     public WordGrid(int rows,int cols){
 	data = new char[rows][cols];
 	for (int row = 0; row < data.length; row++){
-	    for (int i = 0; i < data[row].length; i++){
-		data[row][i] = '_';
+	    for (int col = 0; col < data[row].length; col++){
+		data[row][col] = ' ';
 	    }
 	}
 	
@@ -213,6 +219,18 @@ public class WordGrid{
 	return result;
     }
 
+    public void fillRest(){
+	Random r = new Random();
+	for (int row = 0; row < data.length; row ++){
+	    for (int col = 0; col < data[row].length; col++){
+		if (data[row][col] == ' ' ){
+		    data[row][col] = alphabet[r.nextInt(alphabet.length)];
+		}
+	    }
+	}
+    }
+						     
+
 
 
 
@@ -285,10 +303,12 @@ public class WordGrid{
 
 	    firstTry.clear();
 	    System.out.println("trying addWordVerticalRev (true): " + firstTry.addWordVerticalRev("goof",4,0) );
-	    System.out.println("trying addWordDiagonalRev (true): " + firstTry.addWordDiagonalRev("boing",4,4) );
+	    //System.out.println("trying addWordDiagonalRev (true): " + firstTry.addWordDiagonalRev("boing",4,4) );
 
 	    System.out.println(firstTry.toString()); 
-
+	    System.out.println("fillRest()");
+	    firstTry.fillRest();
+	    System.out.println(firstTry.toString()); 
 	    firstTry.clear();
 
 	} catch (ArrayIndexOutOfBoundsException e){
@@ -300,3 +320,6 @@ public class WordGrid{
     }
 	
 }
+
+
+
