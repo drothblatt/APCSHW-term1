@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class WordGen{
-    ArrayList<String> words = new ArrayList<String>();
+    static ArrayList<String> words = new ArrayList<String>();
 
     public static void fileToArrayList() throws FileNotFoundException{
 	File text = new File("words.txt");
@@ -16,9 +16,9 @@ public class WordGen{
 	}
     }
 
-    public static String toString(){
+    public static String arrayListToString(){
 	String result = "[ ";
-       	for (int i = 0; i < words.length; i++){
+       	for (int i = 0; i < words.size(); i++){
 	    result += words.get(i) + " ";
 	}
 	result += "]";
@@ -26,9 +26,6 @@ public class WordGen{
     }
     public static void main(String[]args) throws FileNotFoundException{
 	fileToArrayList();
-	toString();
-
-
-	
+	System.out.println(arrayListToString());	
     }
 }
