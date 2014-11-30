@@ -4,10 +4,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class WordGen{
+public class WordGen2{
     static ArrayList<String> words = new ArrayList<String>();
+    static ArrayList<String> used = new ArrayList<String>();
 
-    public static void fileToArrayList() throws FileNotFoundException{
+
+    public static void loadWordsFromFile() throws FileNotFoundException{
 	File text = new File("words.txt");
 	Scanner s = new Scanner(text);
     
@@ -17,12 +19,15 @@ public class WordGen{
 	}
     }
 
-    public static String arrayListToString(){
-	String result = "[ ";
-       	for (int i = 0; i < words.size(); i++){
-	    result += words.get(i) + " ";
+    public static String wordsInPuzzle(){
+	String result = "Find these words: \n ";
+       	for (int i = 0; i < used.size()-3; i++){
+	    int line = 0;
+	    while (line < 4){
+		result += used.get(i+line) + "    ";
+	    }
+	    result += "\n";
 	}
-	result += "]";
 	return result;
     }
     
@@ -31,8 +36,7 @@ public class WordGen{
 
 	String largestWord = words.get(r.nextInt(words.size()));
 	int maxSize = largestWord.length();
-	WordGrid gen = new WordGrid(maxSize,maxSize);
-        ArrayList<String> alreadyUsed = new ArrayList<String>();
+	WordGrid2 gen = new WordGrid2(maxSize,maxSize);
 
 
 	for (int i = 0; i < words.size(); i++){
@@ -42,9 +46,9 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				if (!alreadyUsed.contains(words.get(i))){
+				if (!used.contains(words.get(i))){
 				    if (gen.addWordVertical(words.get(i),row,col))
-					alreadyUsed.add(words.get(i));
+					used.add(words.get(i));
 				}
 			    } catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
@@ -55,9 +59,9 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				if (!alreadyUsed.contains(words.get(i))){
+				if (!used.contains(words.get(i))){
 				    if (gen.addWordHorizontal(words.get(i),row,col))
-					alreadyUsed.add(words.get(i));
+				        used.add(words.get(i));
 				}
 			    }catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
@@ -68,9 +72,9 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				if (!alreadyUsed.contains(words.get(i))){
+				if (!used.contains(words.get(i))){
 				    if (gen.addWordDiagonal(words.get(i),row,col))
-					alreadyUsed.add(words.get(i));
+				        used.add(words.get(i));
 				}
 			    }catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
@@ -81,9 +85,9 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				if (!alreadyUsed.contains(words.get(i))){
+				if (!used.contains(words.get(i))){
 				    if (gen.addWordVerticalRev(words.get(i),row,col))
-					alreadyUsed.add(words.get(i));
+					used.add(words.get(i));
 				}
 			    } catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("");
@@ -94,9 +98,9 @@ public class WordGen{
 		    for (int row = 0; row < maxSize; row++){
 			for (int col = 0; col < maxSize; col++){
 			    try{
-				if (!alreadyUsed.contains(words.get(i))){
+				if (!used.contains(words.get(i))){
 				    if(gen.addWordHorizontalRev(words.get(i),row,col))
-					alreadyUsed.add(words.get(i));
+					used.add(words.get(i));
 				}			   
 			    } catch (ArrayIndexOutOfBoundsException e){
 				System.out.println("out of bounds");
@@ -107,21 +111,15 @@ public class WordGen{
 	    }
 	}
 	gen.fillRest();
+
+	
+	System.out.println(wordsInPuzzle());
 	System.out.println(gen.toString());
-	String result = "[ ";
-	for (int i = 0; i < alreadyUsed.size(); i++){
-	    result += alreadyUsed.get(i) + " ";
-	}
-	result += "]";
-	System.out.println("words: " + result);
-	 
-	    
-	System.out.println("# of words: " + alreadyUsed.size()); 
+
     }
     
     public static void main(String[]args) throws FileNotFoundException{
-	fileToArrayList();
-	System.out.println(arrayListToString());
+	loadWordsFromFile();
 	addWordsToGrid();
     }
 }
