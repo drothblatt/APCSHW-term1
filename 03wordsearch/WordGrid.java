@@ -10,8 +10,8 @@ public class WordGrid{
 			       'i','j','k','l','m','n','o','p',
 			       'q','r','s','t','u','v','w','x',
 			       'y','z'};
-    private ArrayList<String> used = new ArrayList<String>();
-    private ArrayList<String> words = new ArrayList<String>();
+    private static ArrayList<String> used = new ArrayList<String>();
+    private static ArrayList<String> words = new ArrayList<String>();
     private Random r = new Random();
 
 
@@ -90,14 +90,15 @@ public class WordGrid{
     public void loadWordsFromFile(String fileName, boolean fillRandomLetters) throws FileNotFoundException{ 
 	File text = new File(fileName);
 	Scanner s = new Scanner(text);
-    
-	while(s.hasNextLine()){
+	int numWords = 0;
+	while(s.hasNextLine() && numWords < 20){
 	    String nextWord = s.nextLine();
 	    words.add(nextWord);
+	    numWords++;
 	}
 	System.out.println(check());
-	addWordsToGrid(words);
-	//if (fillRandomLetters) fillRest();
+	// addWordsToGrid(words);
+	// if (fillRandomLetters) fillRest();
     }
 
     public void addWordsToGrid(ArrayList<String> wordList){
@@ -109,11 +110,15 @@ public class WordGrid{
 		do{
 		    if (addWord(wordList.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1)){
 			used.add(wordList.get(i));
+			System.out.println("word added.");
 		    }
 		    tries++;
-		} while (tries < 10  || used.contains(wordList.get(i)) == false);
+		    System.out.println("trial:" + tries);
+		} while (used.contains(wordList.get(i)) == false && tries < 20);
 	    }
+	    tries = 0;
 	}
+	System.out.println("done randomly adding words");
     }
 
    public void fillRest(){
@@ -128,10 +133,11 @@ public class WordGrid{
 	    				     
     public String wordsInPuzzle(){
 	String result = "Find these words: \n ";
-       	for (int i = 0; i < used.size()-3; i++){
+       	for (int i = 0; i < used.size()-3; i += 4){
 	    int line = 0;
 	    while (line < 4){
 		result += used.get(i+line) + "    ";
+		line++;
 	    }
 	    result += "\n";
 	}
@@ -152,9 +158,13 @@ public class WordGrid{
 
     // Time to check!
     public static void main(String[] args) throws FileNotFoundException{
-	WordGrid b = new WordGrid(8,8);
+	WordGrid b = new WordGrid(12,12);
 	b.loadWordsFromFile("words.txt",true);
-	System.out.println(b.wordsInPuzzle());
+	b.addWordsToGrid(words);
+	System.out.println(" ----- ");
+	System.out.println(b.check());
+
+	//System.out.println(b.wordsInPuzzle());
 	System.out.println(b.toString());
 	
 
