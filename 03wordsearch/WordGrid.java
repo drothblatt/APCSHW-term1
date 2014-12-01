@@ -11,6 +11,7 @@ public class WordGrid{
 			       'q','r','s','t','u','v','w','x',
 			       'y','z'};
     private ArrayList<String> used = new ArrayList<String>();
+    private ArrayList<String> words = new ArrayList<String>();
     private Random r = new Random();
 
 
@@ -86,8 +87,7 @@ public class WordGrid{
 	}
     }
     
-    public void loadWordsFromFile(String fileName, boolean fillRandomLetters){ 
-	ArrayList<String> words = new ArrayList<String>();
+    public void loadWordsFromFile(String fileName, boolean fillRandomLetters) throws FileNotFoundException{ 
 	File text = new File(fileName);
 	Scanner s = new Scanner(text);
     
@@ -95,11 +95,28 @@ public class WordGrid{
 	    String nextWord = s.nextLine();
 	    words.add(nextWord);
 	}
+	System.out.println(check());
+	addWordsToGrid(words);
+	//if (fillRandomLetters) fillRest();
     }
-    
-	
 
-    public void fillRest(){
+    public void addWordsToGrid(ArrayList<String> wordList){
+	int rMax = data.length;
+	int cMax = data[0].length;
+	int tries = 0;
+	for (int i = 0; i < wordList.size(); i++){
+	    if (!used.contains(wordList.get(i))){
+		do{
+		    if (addWord(wordList.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1)){
+			used.add(wordList.get(i));
+		    }
+		    tries++;
+		} while (tries < 10  || used.contains(wordList.get(i)) == false);
+	    }
+	}
+    }
+
+   public void fillRest(){
 	for (int row = 0; row < data.length; row ++){
 	    for (int col = 0; col < data[row].length; col++){
 		if (data[row][col] == ' ' ){
@@ -108,26 +125,7 @@ public class WordGrid{
 	    }
 	}
     }
-
-    public void addWordsToGrid(ArrayList<String> wordList){
-	int rMax = data.length;
-	int cMax = data[0].length;
-	int tries = 0;
-	for (int i = 0; i < wordList; i++){
-	    if (!used.contains(words.get(i))){
-		do{
-		    if (addWord(wordList.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1))
-			used.add(words.get(i));
-	    }
-
-
-
-	    do{
-		addWord(wordList.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1);
-	    }
-	}	
-    }
-						     
+	    				     
     public String wordsInPuzzle(){
 	String result = "Find these words: \n ";
        	for (int i = 0; i < used.size()-3; i++){
@@ -140,12 +138,27 @@ public class WordGrid{
 	return result;
     }
 
+    public String check(){
+	String result = "[ ";
+	for (int i = 0; i < words.size(); i++){
+	    result += words.get(i) + " ";
+	}
+	result += "]";
+	return result;
+    }
 
 
     /***************************************/
 
     // Time to check!
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException{
+	WordGrid b = new WordGrid(8,8);
+	b.loadWordsFromFile("words.txt",true);
+	System.out.println(b.wordsInPuzzle());
+	System.out.println(b.toString());
+	
+
+	/*
 	WordGrid a = new WordGrid(7,7);
 	System.out.println(a.addWord("hello", 2, 3, 0, 0)); //1 - false
 	System.out.println(a.toString());
@@ -182,6 +195,7 @@ public class WordGrid{
 	System.out.println(a.addWord("hello", 6, 6, -1, -1)); //9 - true
 	System.out.println(a.toString());
 	a.clear();
+	*/
 	
     }
 	
