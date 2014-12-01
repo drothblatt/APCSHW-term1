@@ -90,15 +90,12 @@ public class WordGrid{
     public void loadWordsFromFile(String fileName, boolean fillRandomLetters) throws FileNotFoundException{ 
 	File text = new File(fileName);
 	Scanner s = new Scanner(text);
-	int numWords = 0;
-	while(s.hasNextLine() && numWords < 20){
+	while(s.hasNextLine()){
 	    String nextWord = s.nextLine();
 	    words.add(nextWord);
-	    numWords++;
 	}
-	System.out.println(check());
-	// addWordsToGrid(words);
-	// if (fillRandomLetters) fillRest();
+	addWordsToGrid(words);
+	if (fillRandomLetters) fillRest();
     }
 
     public void addWordsToGrid(ArrayList<String> wordList){
@@ -110,15 +107,12 @@ public class WordGrid{
 		do{
 		    if (addWord(wordList.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1)){
 			used.add(wordList.get(i));
-			System.out.println("word added.");
 		    }
 		    tries++;
-		    System.out.println("trial:" + tries);
 		} while (used.contains(wordList.get(i)) == false && tries < 20);
 	    }
 	    tries = 0;
 	}
-	System.out.println("done randomly adding words");
     }
 
    public void fillRest(){
@@ -132,22 +126,20 @@ public class WordGrid{
     }
 	    				     
     public String wordsInPuzzle(){
-	String result = "Find these words: \n ";
-       	for (int i = 0; i < used.size()-3; i += 4){
-	    int line = 0;
-	    while (line < 4){
-		result += used.get(i+line) + "    ";
-		line++;
+	String result = "Find these words: \n";
+       	for (int i = 0; i < used.size(); i++){
+	    if (i % 4 == 0){
+		result += "\n";
 	    }
-	    result += "\n";
+	    result += used.get(i) + "     ";
 	}
 	return result;
     }
 
     public String check(){
 	String result = "[ ";
-	for (int i = 0; i < words.size(); i++){
-	    result += words.get(i) + " ";
+	for (int i = 0; i < used.size(); i++){
+	    result += used.get(i) + " ";
 	}
 	result += "]";
 	return result;
@@ -160,11 +152,8 @@ public class WordGrid{
     public static void main(String[] args) throws FileNotFoundException{
 	WordGrid b = new WordGrid(12,12);
 	b.loadWordsFromFile("words.txt",true);
-	b.addWordsToGrid(words);
-	System.out.println(" ----- ");
-	System.out.println(b.check());
-
-	//System.out.println(b.wordsInPuzzle());
+	System.out.println(b.check() + "\n");
+	System.out.println(b.wordsInPuzzle());
 	System.out.println(b.toString());
 	
 
