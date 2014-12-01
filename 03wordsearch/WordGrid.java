@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class WordGrid{
@@ -6,6 +10,9 @@ public class WordGrid{
 			       'i','j','k','l','m','n','o','p',
 			       'q','r','s','t','u','v','w','x',
 			       'y','z'};
+    private ArrayList<String> used = new ArrayList<String>();
+    private Random r = new Random();
+
 
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
@@ -78,10 +85,21 @@ public class WordGrid{
 	    return false;
 	}
     }
+    
+    public void loadWordsFromFile(String fileName, boolean fillRandomLetters){ 
+	ArrayList<String> words = new ArrayList<String>();
+	File text = new File(fileName);
+	Scanner s = new Scanner(text);
+    
+	while(s.hasNextLine()){
+	    String nextWord = s.nextLine();
+	    words.add(nextWord);
+	}
+    }
+    
 	
 
     public void fillRest(){
-	Random r = new Random();
 	for (int row = 0; row < data.length; row ++){
 	    for (int col = 0; col < data[row].length; col++){
 		if (data[row][col] == ' ' ){
@@ -91,8 +109,36 @@ public class WordGrid{
 	}
     }
 
-						     
+    public void addWordsToGrid(ArrayList<String> wordList){
+	int rMax = data.length;
+	int cMax = data[0].length;
+	int tries = 0;
+	for (int i = 0; i < wordList; i++){
+	    if (!used.contains(words.get(i))){
+		do{
+		    if (addWord(wordList.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1))
+			used.add(words.get(i));
+	    }
 
+
+
+	    do{
+		addWord(wordList.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1);
+	    }
+	}	
+    }
+						     
+    public String wordsInPuzzle(){
+	String result = "Find these words: \n ";
+       	for (int i = 0; i < used.size()-3; i++){
+	    int line = 0;
+	    while (line < 4){
+		result += used.get(i+line) + "    ";
+	    }
+	    result += "\n";
+	}
+	return result;
+    }
 
 
 
