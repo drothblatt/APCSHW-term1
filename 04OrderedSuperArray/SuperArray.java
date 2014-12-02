@@ -1,13 +1,13 @@
 public class SuperArray{
-    private Object[] superArray;
+    private String[] superArray;
     private int elCount; 
 
     public SuperArray(){ // Default Constructor
-	superArray = new Object[10];
+	superArray = new String[10];
     }
 
     public SuperArray(int size){ // Constuctor that takes a size
-	superArray = new Object[size];
+	superArray = new String[size];
     }
 
     // basic methods for part 1...
@@ -22,7 +22,7 @@ public class SuperArray{
 	return result;
     }
     
-    public void add(Object e){
+    public void add(String e){
 	if (elCount < superArray.length){
 	    superArray[elCount] = e;
 	    elCount ++;
@@ -47,7 +47,7 @@ public class SuperArray{
     }
 
     public void resize(int newCapacity){
-	Object[] newArray = new Object[newCapacity];
+	String[] newArray = new String[newCapacity];
 	for (int i = 0; i < newArray.length && i < superArray.length; i++){
 	    newArray[i] = superArray[i];
         }
@@ -57,7 +57,7 @@ public class SuperArray{
     // extra methods in part 1...
 
     public void clear(){
-        Object[] cleanArray = new Object[superArray.length];
+        String[] cleanArray = new String[superArray.length];
 	superArray = cleanArray;
     }
 
@@ -74,51 +74,42 @@ public class SuperArray{
 
 
 
-    public Object get(int index){
+    public String get(int index){
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException();
         }
         return superArray[index];
     }
 
-    public void add(int index, Object o){
+    public boolean add(int index, String o){
         if (size() == superArray.length){
             resize(superArray.length+1);
         }
-        Object[] copyArray = new Object[superArray.length];
+        String[] copyArray = new String[superArray.length];
 	for (int i = 0; i < superArray.length; i++){
 	    copyArray[i] = superArray[i];
 	}
-	/*
-       	System.out.println(toString());
-	String copyArrayString = "[ ";
-	for (int i = 0; i < copyArray.length; i++){
-	    copyArrayString += copyArray[i] + " ";
-	}
-	copyArrayString += " ]";
-	
-	System.out.println(copyArrayString);
-	*/
         for (int i = index; i < superArray.length-1; i++){
             superArray[i+1] = copyArray[i];
         }
         set(index,o);
 	elCount++;
+	return true;
     }
 
-    public Object set(int index, Object o){
+    public String set(int index, String o){
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException();
         }
-	Object old = get(index);
+	String old = get(index);
         superArray[index] = o;
         return old;
     }
 
 
-    public Object remove(int index){
-        Object[] origArray = superArray;
-	Object result;
+    public String remove(int index){
+        String[] origArray = superArray;
+	String result;
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException();
         } else{
@@ -134,6 +125,9 @@ public class SuperArray{
 	}
 	return result;
     }
+
+
+    /*
 
     public static void main(String[]args){
 	SuperArray L = new SuperArray(6);
@@ -175,11 +169,9 @@ public class SuperArray{
 	L.resize(15);
 	System.out.println(L.size());
 	System.out.println(L.toString());
-	/* L.resize(2);
 	System.out.println(L.size());
-	System.out.println(L.toString()); */
+	System.out.println(L.toString()); 
 
-	//L.clear();
 	System.out.println(L.toString());
 
 	L.resize(10);
@@ -237,8 +229,7 @@ public class SuperArray{
 	System.out.println(L.toString());
 
     }
-
-
+    */
 
 
 }
