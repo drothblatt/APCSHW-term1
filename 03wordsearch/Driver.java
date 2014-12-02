@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Driver{
     public static boolean checkInputs(int rows, int cols, int randomSeed){
-	return rows <= 0 || rows > 40 || cols <= 0 || cols > 40 || randomSeed <= 0;
+	return rows < 3 || rows > 40 || cols < 3 || cols > 40 || randomSeed <= 0;
     }
 
     public static void main(String[]args) throws FileNotFoundException{
@@ -37,7 +37,7 @@ public class Driver{
 		}
 	    } catch (Exception e){
 		System.out.println("Invalid inputs for #ofRows, #ofCols, and/or randomSeed." +
-				   "\n>> #ofRows/#ofCols must be btwn 0 & 40."+	
+				   "\n>> #ofRows/#ofCols must be btwn 3 & 40."+	
 				   "\n>> randomSeed must be greater than 0.");
 	    }
 	}
@@ -62,8 +62,6 @@ public class Driver{
 	    w.loadWordsFromFile("words.txt", fill);
 	    System.out.println( w.wordsInPuzzle() );
 	    System.out.println( w );
-	} else{
-	    System.out.println(">> Something went wrong. Maybe you should try again.");
-	}
+	} 
     }
 }
