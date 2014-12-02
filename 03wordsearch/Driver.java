@@ -47,7 +47,7 @@ public class Driver{
 		int answers = Integer.parseInt(args[3]);
 		if (answers == 1){
 		    fill = false;
-		    System.out.println("\n*** ANSWER KEY!");
+		    System.out.println("\n*** THIS IS THE ANSWER KEY!");
 		} else{
 		    fill = true;
 		    System.out.println("\n*** For ANSWER KEY, fourth input (index 3) must be '1'. ");
