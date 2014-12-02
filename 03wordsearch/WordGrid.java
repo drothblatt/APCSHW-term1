@@ -169,6 +169,11 @@ public class WordGrid{
 	return result;
     }
 
+    public void setSeed(long seed){
+	r.setSeed(seed);	
+    }
+
+
 
     /***************************************/
 

@@ -3,8 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Driver{
-    public static boolean checkInputs(int rows, int cols){
-	return rows <= 0 || rows > 75 || cols <= 0 || cols > 75;
+    public static boolean checkInputs(int rows, int cols, int randomSeed){
+	return rows <= 0 || rows > 40 || cols <= 0 || cols > 40 || randomSeed <= 0;
     }
 
     public static void main(String[]args) throws FileNotFoundException{
@@ -13,6 +13,7 @@ public class Driver{
 	// default... will change unless default is needed. 
 	rows = 0;
 	cols = 0;
+	randomSeed = 0;
 	fill = true;
 	// end of default.
 	boolean toosmall;
@@ -27,45 +28,42 @@ public class Driver{
 	}
 	if (!toosmall){
 	    try{
-		int r = Integer.parseInt(args[0]);
-		int c = Integer.parseInt(args[1]);
-		rows = r;
-	        cols = c;	       
-		// in order to cause error for invalid ints.
-		if (checkInputs(rows,cols)){ 
+		rows = Integer.parseInt(args[0]);
+		cols = Integer.parseInt(args[1]);
+		randomSeed = Integer.parseInt(args[2]);
+		//randomSeed = rSeed;.
+		if (checkInputs(rows,cols,randomSeed)){ 
 		    String y = args[100];
 		}
 	    } catch (Exception e){
-		System.out.println("Invalid inputs for #ofRows and #ofCols.\n>> Must be positive integer"+	
-				   "(btwn 0 and 75 non-inclusive).");
+		System.out.println("Invalid inputs for #ofRows, #ofCols, and/or randomSeed." +
+				   "\n>> #ofRows/#ofCols must be btwn 0 & 40."+	
+				   "\n>> randomSeed must be greater than 0.");
 	    }
 	}
 
 	if (args.length == 4){
 	    try{
-		int a = Integer.parseInt(args[3]);
-		if (a == 1){
+		int answers = Integer.parseInt(args[3]);
+		if (answers == 1){
 		    fill = false;
 		} else{
 		    fill = true;
 		}
 	    } catch (Exception e){
-		System.out.println("Invalid input to call for answers. Must " + 
-				   "be an integer.\n>> A '1' will show the " + 
-				   "answer key, all other numbers won't.");
+		System.out.println("");
 	    }
 	}
-	if (!checkInputs(rows,cols)){ //default
+	if (!checkInputs(rows,cols,randomSeed)){ //default
 	    WordGrid w = new WordGrid(rows, cols);
-	    /*
-	      if(you need to change the random seed){  
-	      see more notes on this later
-	      w.setSeed( ??? );  
-	      }
-	    */
+	    if(randomSeed != 0){  
+		w.setSeed(randomSeed);  
+	    }
 	    w.loadWordsFromFile("words.txt", fill);
 	    System.out.println( w.wordsInPuzzle() );
 	    System.out.println( w );
+	} else{
+	    System.out.println(">> Something went wrong. Maybe you should try again.");
 	}
     }
 }
