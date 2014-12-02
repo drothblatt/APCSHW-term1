@@ -81,7 +81,7 @@ public class SuperArray{
         return superArray[index];
     }
 
-    public boolean add(int index, String o){
+    public void add(int index, String o){
         if (size() == superArray.length){
             resize(superArray.length+1);
         }
@@ -94,7 +94,6 @@ public class SuperArray{
         }
         set(index,o);
 	elCount++;
-	return true;
     }
 
     public String set(int index, String o){
