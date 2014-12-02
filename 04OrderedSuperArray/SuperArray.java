@@ -128,11 +128,6 @@ public class SuperArray{
 
 
 
-
-
-
-
-    /*
     public static void main(String[]args){
 	SuperArray L = new SuperArray(6);
 	System.out.println(L.toString());
@@ -173,11 +168,9 @@ public class SuperArray{
 	L.resize(15);
 	System.out.println(L.size());
 	System.out.println(L.toString());
-	/* L.resize(2);
 	System.out.println(L.size());
 	System.out.println(L.toString()); 
 
-	//L.clear();
 	System.out.println(L.toString());
 
 	L.resize(10);
@@ -235,7 +228,6 @@ public class SuperArray{
 	System.out.println(L.toString());
 
     }
-    */
 
 
 
