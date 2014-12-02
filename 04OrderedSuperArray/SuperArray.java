@@ -81,7 +81,7 @@ public class SuperArray{
         return superArray[index];
     }
 
-    public void add(int index, String o){
+    public boolean add(int index, String o){
         if (size() == superArray.length){
             resize(superArray.length+1);
         }
@@ -94,13 +94,14 @@ public class SuperArray{
         }
         set(index,o);
 	elCount++;
+	return true;
     }
 
     public String set(int index, String o){
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException();
         }
-	Object old = get(index);
+	String old = get(index);
         superArray[index] = o;
         return old;
     }
@@ -126,7 +127,7 @@ public class SuperArray{
     }
 
 
-
+    /*
 
     public static void main(String[]args){
 	SuperArray L = new SuperArray(6);
@@ -228,7 +229,7 @@ public class SuperArray{
 	System.out.println(L.toString());
 
     }
-
+    */
 
 
 }
