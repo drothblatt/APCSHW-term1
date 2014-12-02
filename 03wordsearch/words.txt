@@ -33,7 +33,7 @@ clutter
 calm
 career
 chew
-search 
+search
 greedy
 instrument
 evening
@@ -51,12 +51,12 @@ nap
 suitcase
 sunset
 practice
-rush 
+rush
 flame
 flight
 sight
 right
-might 
+might
 kite
 light
 tilt

@@ -10,7 +10,7 @@ public class Driver{
     public static void main(String[]args) throws FileNotFoundException{
 	int rows, cols, randomSeed;
 	boolean fill;
-	// default... will change unless default is needed. 
+	// original initialization (in case it doesn't happen later) 
 	rows = 0;
 	cols = 0;
 	randomSeed = 0;
@@ -47,21 +47,30 @@ public class Driver{
 		int answers = Integer.parseInt(args[3]);
 		if (answers == 1){
 		    fill = false;
+		    System.out.println("\n*** ANSWER KEY!");
 		} else{
 		    fill = true;
+		    System.out.println("\n*** For ANSWER KEY, fourth input (index 3) must be '1'. ");
 		}
 	    } catch (Exception e){
-		System.out.println("");
+		System.out.println("\n*** For ANSWER KEY, fourth input (index 3) must be '1'. ");
 	    }
+	} else if (args.length == 3 && !checkInputs(rows,cols,randomSeed)){
+	    System.out.println("\n*** For ANSWER KEY, fourth input (index 3) must be '1'. ");
 	}
-	if (!checkInputs(rows,cols,randomSeed)){ //default
+
+	if (!checkInputs(rows,cols,randomSeed)){ //wGrid must have the right inputs or we're done
 	    WordGrid w = new WordGrid(rows, cols);
 	    if(randomSeed != 0){  
 		w.setSeed(randomSeed);  
 	    }
 	    w.loadWordsFromFile("words.txt", fill);
-	    System.out.println( w.wordsInPuzzle() );
+	    System.out.println( "\nFind these words:\n" + w.wordsInPuzzle() );
 	    System.out.println( w );
+
+	    System.out.println( "Total number of words in puzzle: "  // my own addition
+				+ w.getWordCount() + "\n" );
+
 	} 
     }
 }

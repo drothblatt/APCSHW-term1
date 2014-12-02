@@ -6,13 +6,13 @@ import java.util.Random;
 
 public class WordGrid{
     private char[][]data;
-    private char[] alphabet = {'a','b','c','d','e','f','g','h',
-			       'i','j','k','l','m','n','o','p',
-			       'q','r','s','t','u','v','w','x',
-			       'y','z'};
-    private ArrayList<String> used = new ArrayList<String>();
-    private ArrayList<String> words = new ArrayList<String>();
-    private Random r = new Random();
+    private char[] alphabet =  {'a','b','c','d','e','f','g','h',
+				'i','j','k','l','m','n','o','p',
+				'q','r','s','t','u','v','w','x',
+				'y','z'};
+    private ArrayList<String> words;
+    private ArrayList<String> used;
+    private Random r; 
 
 
     /**Initialize the grid to the size specified and fill all of the positions
@@ -27,7 +27,10 @@ public class WordGrid{
 		data[row][col] = '_';
 	    }
 	}
-	
+	words = new ArrayList<String>();
+	used = new ArrayList<String>();
+	r = new Random();
+
     }
 
     /**Set all values in the WordGrid to spaces '_' */
@@ -95,24 +98,24 @@ public class WordGrid{
 	    words.add(nextWord);
 	}
 	randomize(words);
-	addWordsToGrid(words);
+	addManyWordsToList(words);
 	if (fillRandomLetters){
 	    fillRest();
 	}
     }
 
-    public void addWordsToGrid(ArrayList<String> wordList){
+    public void addManyWordsToList(ArrayList<String> allWords){
 	int rMax = data.length;
 	int cMax = data[0].length;
 	int tries = 0;
-	for (int i = 0; i < wordList.size(); i++){
-	    if (!used.contains(wordList.get(i))){
+	for (int i = 0; i < allWords.size(); i++){
+	    if (!used.contains(allWords.get(i))){
 		do{
-		    if (addWord(wordList.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1)){
-			used.add(wordList.get(i));
+		    if (addWord(allWords.get(i), r.nextInt(rMax), r.nextInt(cMax), r.nextInt(3)-1, r.nextInt(3)-1)){
+			used.add(allWords.get(i));
 		    }
 		    tries++;
-		} while (used.contains(wordList.get(i)) == false && tries < 35);
+		} while (used.contains(allWords.get(i)) == false && tries < 35);
 	    }
 	    tries = 0;
 	}
@@ -129,8 +132,7 @@ public class WordGrid{
     }
 	    				     
     public String wordsInPuzzle(){
-	System.out.println("");
-	String result = "Find these words: \n";
+	String result = "";
        	for (int i = 0; i < used.size(); i++){
 	    if (i % 4 == 0){
 		result += "\n";
@@ -173,6 +175,9 @@ public class WordGrid{
 	r.setSeed(seed);	
     }
 
+    public int getWordCount(){
+	return used.size();
+    }
 
 
     /***************************************/
@@ -181,7 +186,7 @@ public class WordGrid{
     public static void main(String[] args) throws FileNotFoundException{
 	WordGrid b = new WordGrid(12,12);
         b.loadWordsFromFile("words.txt",true);
-	System.out.println(b.wordsInPuzzle());
+	System.out.println( "\nFind these words:\n" + b.wordsInPuzzle());
 	System.out.println(b.toString());
     }
 	
