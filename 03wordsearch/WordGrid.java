@@ -94,6 +94,7 @@ public class WordGrid{
 	    String nextWord = s.nextLine();
 	    words.add(nextWord);
 	}
+	randomize(words);
 	addWordsToGrid(words);
 	if (fillRandomLetters){
 	    fillRest();
@@ -148,7 +149,16 @@ public class WordGrid{
 	}
 	return space;
     }
-	
+
+    public void randomize( ArrayList<String> L) {
+	for (int i = 0; i < L.size(); i++){
+	    String x = L.get(r.nextInt(L.size()-i) + i);
+	    String y = L.get(i);
+	    int flip = L.indexOf(x); // tells us where to put y. 
+	    L.set(i, x);
+	    L.set(flip, y);
+	}
+    }
 
     public String check(){
 	String result = "[ ";
