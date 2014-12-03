@@ -169,12 +169,12 @@ public class SuperArray{
 	// 2014-12-03 (in class)
 	//System.out.println("Success?? " + names.verifyInsertionSort());
 
-	if (args[0] == "0"){ // use good insertionSort
+	if (args[0].equals("0")){ // use good insertionSort
 	    System.out.println("Before:  " + names.toString());
 	    names.insertionSort();
 	    System.out.println("After:  " + names.toString());
 
-	} else if (args[0] = "1"){ // use badInsertionSort
+	} else if (args[0].equals("1")){ // use badInsertionSort
 	    System.out.println("Before:  " + names.toString());
 	    names.badInsertionSort();
 	    System.out.println("After:  " + names.toString());
