@@ -10,22 +10,29 @@ public class OrderedSuperArray extends SuperArray{
     }
 	
     public void add(String element){
+	boolean done = false; // allows for end of while loop
+	int i = 0; // index
 	if (size() == 0){
 	    super.add(element);
 	} else{
-	    for (int i = 0; i < size(); i++){
-		if (element.compareTo(get(i)) >= 0){
+	    do{
+		if (element.compareTo(get(i)) <= 0){
 		    super.add(i,element);
-		    System.out.println("should've added");
+		    done = true;
+		} else{
+		    i++;
 		}
+	    } while (!done && i < size());
+	    if (i == size()){
+		super.add(element);
 	    }
-	
 	}
     }
 
+
     public static void main(String[]args){
 	OrderedSuperArray L = new OrderedSuperArray(10);
-	System.out.println("L: " + L.toString());
+	System.out.println(L.toString());
 
 	L.add("Hello");
 	System.out.println(L.toString());
@@ -43,6 +50,18 @@ public class OrderedSuperArray extends SuperArray{
 	System.out.println(L.toString());
         L.add(2,"Hell");
 	System.out.println(L.toString());
+	L.add("Homicide");
+       	System.out.println(L.toString());
+	L.add("Ha");
+       	System.out.println(L.toString());
+	L.add("Huge");
+	System.out.println(L.toString());
+	L.add("Howdy");
+	System.out.println(L.toString());
+
+
+	
+
 	
     }
 

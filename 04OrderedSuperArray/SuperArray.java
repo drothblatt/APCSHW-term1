@@ -28,14 +28,12 @@ public class SuperArray{
 	    elCount ++;
 	} else { // note: already gave add() ability to increase 
 	         // if needed on day 1, didn't change this fxn on day 2
-	    resize(superArray.length+1);
+	    resize(superArray.length*2);
 	    superArray[elCount] = e;
 	    elCount ++;
 	}
     }
     
-
-
     public int size(){ // returns number of elements in the list
 	int size = 0;
 	for (int i = 0; i < superArray.length; i++){
@@ -54,24 +52,10 @@ public class SuperArray{
         superArray = newArray;
     }
 
-    // extra methods in part 1...
-
     public void clear(){
         String[] cleanArray = new String[superArray.length];
 	superArray = cleanArray;
     }
-
-    /*   public Object get(int index){
-	return superArray[index];
-	} 
-
-    public void set(int index, Object e){
-	superArray[index] = e;
-	} 
-    */
-
-    // ... end of extra methods
-
 
 
     public String get(int index){
@@ -124,111 +108,5 @@ public class SuperArray{
 	}
 	return result;
     }
-
-
-    /*
-
-    public static void main(String[]args){
-	SuperArray L = new SuperArray(6);
-	System.out.println(L.toString());
-
-	L.add("Hi");
-	System.out.println(L.size());
-	L.add(1);
-	System.out.println(L.size());
-	L.add(2);
-	System.out.println(L.size());
-	L.add("sup");
-	System.out.println("should be 4:" + L.size());
-	System.out.println(L.toString());
-	L.add(9);
-	System.out.println("should be 5:" + L.size());
-	System.out.println(L.toString());
-	
-	System.out.println("expecting error...");
-	try{
-	    
-	    System.out.println(L.get(8));
-	} catch (IndexOutOfBoundsException e){
-	    System.out.println("Oops. Index is out of range. Try Again.");
-	}
-
-	try{
-	    System.out.println(L.get(3));
-	} catch (IndexOutOfBoundsException e){
-	    System.out.println("Oops. Index is out of range. Try again.");
-	}
-
-	System.out.println("checking the add method");
-
-	L.add(3, "nada");
-	System.out.println(L.toString());
-
-
-	L.resize(15);
-	System.out.println(L.size());
-	System.out.println(L.toString());
-	System.out.println(L.size());
-	System.out.println(L.toString()); 
-
-	System.out.println(L.toString());
-
-	L.resize(10);
-
-	try{
-	    System.out.println("should be 9: " + L.set(4,true));
-	    System.out.println("should be true: " + L.get(4));
-	} catch (IndexOutOfBoundsException e){
-	    System.out.println("Oops. Index is out of range. Try again.");
-	}
-	System.out.println("expecting error...");
-	try{
-	    L.set(11,true);
-	} catch (IndexOutOfBoundsException e){
-	    System.out.println("Oops. Index is out of range. Try again.");
-	}
-
-	System.out.println(L.toString());
-	
-	System.out.println(" ** checking remove() ** ");
-	
-	try{
-	    System.out.println(L.remove(3));
-	} catch (IndexOutOfBoundsException e){
-	    System.out.println("Oops. Index is out of range. Try again.");
-	}
-	System.out.println(L.toString());
-
-	System.out.println("expecting error...");
-	try{
-	    System.out.println(L.remove(9));
-	} catch (IndexOutOfBoundsException e){
-	    System.out.println("Oops. Index is out of range. Try again.");
-	}
-	System.out.println(L.toString());
-
-	// running code has confirmed remove fxn works!
-
-
-	System.out.println("checking set");
-
-	System.out.println("expecting error...");
-	try{
-	    System.out.println(L.set(10,false));
-	} catch (IndexOutOfBoundsException e){
-	    System.out.println("Oops. Index is out of range. Try again.");
-	}
-
-	try{
-	    System.out.println(L.set(3, "hullo"));
-	} catch (IndexOutOfBoundsException e){
-	    System.out.println("Oops. Index is out of range. Try again.");
-	}
-
-	System.out.println(L.toString());
-
-    }
-    */
-
 
 }
