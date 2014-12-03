@@ -10,6 +10,25 @@ public class SuperArray{
 	superArray = new String[size];
     }
 
+    // NEWEST METHODS... DECEMBER!!!
+
+    public void insertionSort(){
+	if (size() == superArray.length){
+            resize(superArray.length*2);
+        }
+	for (int i = 0; i < size(); i++){
+	    String minString = get(i);
+	    int posOfMinString = i;
+	    while (posOfMinString > 0 && 
+		   get(posOfMinString-1).compareTo(minString) > 0){
+		superArray[posOfMinString] = superArray[posOfMinString-1];
+		posOfMinString--;
+	    }
+	    superArray[posOfMinString] = minString;
+	}
+    }
+	    
+
     // basic methods for part 1...
 
     public String toString(){ // representation of array [ e1 e2 e3 ... ]
@@ -67,7 +86,7 @@ public class SuperArray{
 
     public void add(int index, String o){
         if (size() == superArray.length){
-            resize(superArray.length+1);
+            resize(superArray.length*2);
         }
         String[] copyArray = new String[superArray.length];
 	for (int i = 0; i < superArray.length; i++){
@@ -108,5 +127,6 @@ public class SuperArray{
 	}
 	return result;
     }
+
 
 }

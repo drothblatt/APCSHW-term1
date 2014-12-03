@@ -58,10 +58,6 @@ public class OrderedSuperArray extends SuperArray{
 	System.out.println(L.toString());
 	L.add("Howdy");
 	System.out.println(L.toString());
-
-
-	
-
 	
     }
 
