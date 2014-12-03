@@ -16,7 +16,7 @@ public class WordGrid{
 
 
     /**Initialize the grid to the size specified and fill all of the positions
-     *with spaces.
+     *with underscores.
      *@param row is the starting height of the WordGrid
      *@param col is the starting width of the WordGrid
      */
@@ -33,7 +33,8 @@ public class WordGrid{
 
     }
 
-    /**Set all values in the WordGrid to spaces '_' */
+    /** Set all values in the WordGrid to spaces '_' 
+     */
     private void clear(){
 	for (int row = 0; row < data.length; row++){
 	    for (int i = 0; i < data[row].length; i++){
@@ -58,6 +59,8 @@ public class WordGrid{
 	return result;
     }
 
+    /** Checks to see if a word will
+     */
     public boolean checkWord(String word, int row, int col, int dx, int dy){
 	if ( (dx == 0 && dy == 0) || (row < 0 || col < 0) ||
 	     (row + dy*word.length() > data.length) ||
