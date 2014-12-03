@@ -35,29 +35,29 @@ public class OrderedSuperArray extends SuperArray{
 	System.out.println(L.toString());
 
 	L.add("Hello");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
 	L.add("Hat");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
 	L.add("Hi");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
         L.add(5,"Ham");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
 	L.add("Hippo");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
 	L.add("Hop");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
 	L.add("Huevos");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
         L.add(2,"Hell");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
 	L.add("Homicide");
-       	System.out.println(L.toString());
+       	System.out.println(">> " + L.toString());
 	L.add("Ha");
-       	System.out.println(L.toString());
+       	System.out.println(">> " + L.toString());
 	L.add("Huge");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
 	L.add("Howdy");
-	System.out.println(L.toString());
+	System.out.println(">> " + L.toString());
 	
     }
 

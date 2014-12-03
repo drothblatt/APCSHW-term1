@@ -40,6 +40,8 @@ public class SuperArray{
 	result += " ]";
 	return result;
     }
+
+
     
     public void add(String e){
 	if (elCount < superArray.length){
@@ -127,6 +129,21 @@ public class SuperArray{
 	}
 	return result;
     }
+    
+    public static void main(String[]args){
+	SuperArray names = new SuperArray(5);
+	names.add("Tyler");
+	names.add("Miki");
+	names.add("Louis");
+	names.add("Ari");
+	names.add("Max");
+	names.add("Zack");
+	names.add("David");
+	names.add("Bob");
 
+	System.out.println("Before:  " + names.toString());
+	names.insertionSort();
+	System.out.println("After:   " + names.toString());
+    }
 
 }
