@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SuperArray{
     private String[] superArray;
     private int elCount; 
@@ -27,10 +29,33 @@ public class SuperArray{
 	    superArray[posOfMinString] = minString;
 	}
     }
+    public boolean verifyInsertionSort(){ //in class 2014-12-03
+	SuperArray a1 = new SuperArray(superArray.length);
+	SuperArray a2 = new SuperArray(superArray.length);
+	for (int i = 0; i < superArray.length; i++){
+	    a1.add( (get(i)) );
+	    a2.add( (get(i)) );
+	}
+	a1.insertionSort();
+	Arrays.sort(a2.superArray);
+	return (a1.equals(a2));
+    }
+
+    public void badInsertionSort(){
+        OrderedSuperArray c = new OrderedSuperArray();
+        while( this.size() > 0){ 
+            c.add(this.remove(0));
+        }
+        while(c.size() > 0){
+            this.add(c.remove(0));
+        }
+    }
+
+
+
 	    
-
-    // basic methods for part 1...
-
+    // end of stuff from 2014-12-03  
+    
     public String toString(){ // representation of array [ e1 e2 e3 ... ]
 	String result = "[ ";
 	for (int i = 0; i < superArray.length; i++){
@@ -140,10 +165,24 @@ public class SuperArray{
 	names.add("Zack");
 	names.add("David");
 	names.add("Bob");
+	
+	// 2014-12-03 (in class)
+	//System.out.println("Success?? " + names.verifyInsertionSort());
 
+	if (args[0] == "0"){ // use good insertionSort
+	    names.insertionSort();
+	} else if (args[0] = "1"){
+	    names.badInsertionSort();
+	}
+
+
+	// end of stuff from 2014-12-03 (in class)
+
+	/*
 	System.out.println("Before:  " + names.toString());
 	names.insertionSort();
 	System.out.println("After:   " + names.toString());
+	*/
     }
 
 }
