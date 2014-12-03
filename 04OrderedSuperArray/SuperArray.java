@@ -170,9 +170,14 @@ public class SuperArray{
 	//System.out.println("Success?? " + names.verifyInsertionSort());
 
 	if (args[0] == "0"){ // use good insertionSort
+	    System.out.println("Before:  " + names.toString());
 	    names.insertionSort();
-	} else if (args[0] = "1"){
+	    System.out.println("After:  " + names.toString());
+
+	} else if (args[0] = "1"){ // use badInsertionSort
+	    System.out.println("Before:  " + names.toString());
 	    names.badInsertionSort();
+	    System.out.println("After:  " + names.toString());
 	}
 
 
