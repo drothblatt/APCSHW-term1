@@ -55,6 +55,8 @@ public class SuperArray{
 
 	    
     // end of stuff from 2014-12-03  
+
+    // 2014-12-04
     public int find(String target){
 	for (int index = 0; index < size(); index ++){
 	    if (target.equals(get(index))){
@@ -64,7 +66,6 @@ public class SuperArray{
 	return -1;
     }
 
-    // 2014-12-04
     
     // end of stuff from 2014-14-04
     
