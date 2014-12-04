@@ -55,6 +55,18 @@ public class SuperArray{
 
 	    
     // end of stuff from 2014-12-03  
+    public int find(String target){
+	for (int index = 0; index < size(); index ++){
+	    if (target.equals(get(index))){
+		return index;
+	    }
+	}
+	return -1;
+    }
+
+    // 2014-12-04
+    
+    // end of stuff from 2014-14-04
     
     public String toString(){ // representation of array [ e1 e2 e3 ... ]
 	String result = "[ ";
@@ -165,7 +177,12 @@ public class SuperArray{
 	names.add("Zack");
 	names.add("David");
 	names.add("Bob");
-	
+	System.out.println( names );
+	System.out.println("should be index 3: " + names.find("Ari"));
+	System.out.println("should be index 6: " + names.find("David"));
+	System.out.println("should be index -1: " + names.find("Jake"));
+
+	/*
 	// 2014-12-03 (in class)
 	//System.out.println("Success?? " + names.verifyInsertionSort());
 
@@ -179,7 +196,7 @@ public class SuperArray{
 	    names.badInsertionSort();
 	    System.out.println("After:  " + names.toString());
 	}
-
+	*/
 
 	// end of stuff from 2014-12-03 (in class)
 

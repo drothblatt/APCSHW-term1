@@ -4,6 +4,9 @@ public class OrderedSuperArray extends SuperArray{
     public OrderedSuperArray(int size){
 	OrderedSuperArray = new String[size];
     }
+    public OrderedSuperArray(){
+	OrderedSuperArray = new String[10];
+    }
 
     public void add(int index, String element){
 	add(element);
