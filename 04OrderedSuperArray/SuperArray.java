@@ -71,14 +71,17 @@ public class SuperArray{
 
     // 2014-12-05
     public void selectionSort(){
+	int stillUnsorted  = 0;
 	for (int i = 0; i < size(); i++){
 	    String move = get(i);
 	    int moveTo = find(min);
 	    set(i,minString());
 	    set(moveTo,move);
+	    lastSort++;
 	}
     }
-    public String minString(){
+    public String minString(int stillUnsorted){
+	String[] x =
 	String min = get(0);
 	for (int i = 0; i < size() ; i++){
 	    if ( (get(i)).compareTo(min) < 0  ) {
