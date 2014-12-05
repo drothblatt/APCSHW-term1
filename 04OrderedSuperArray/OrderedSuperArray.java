@@ -5,7 +5,7 @@ public class OrderedSuperArray extends SuperArray{
 	OrderedSuperArray = new String[size];
     }
     public OrderedSuperArray(){
-	OrderedSuperArray = new String[10];
+	this(10);
     }
 
     public void add(int index, String element){
