@@ -67,7 +67,27 @@ public class SuperArray{
     }
 
     
-    // end of stuff from 2014-14-04
+    // end of stuff from 2014-12-04
+
+    // 2014-12-05
+    public void selectionSort(){
+	for (int i = 0; i < size(); i++){
+	    String move = get(i);
+	    int moveTo = find(min);
+	    set(i,minString());
+	    set(moveTo,move);
+	}
+    }
+    public String minString(){
+	String min = get(0);
+	for (int i = 0; i < size() ; i++){
+	    if ( (get(i)).compareTo(min) < 0  ) {
+		min = get(i);
+	    }
+	}
+	return min;
+    }
+    // end of stuff from 2014-12-05
     
     public String toString(){ // representation of array [ e1 e2 e3 ... ]
 	String result = "[ ";
