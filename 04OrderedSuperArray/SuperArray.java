@@ -71,19 +71,18 @@ public class SuperArray{
 
     // 2014-12-05
     public void selectionSort(){
-	int stillUnsorted  = 0;
+	int stillUnsorted = 0;
 	for (int i = 0; i < size(); i++){
 	    String move = get(i);
-	    int moveTo = find(min);
-	    set(i,minString());
+	    int moveTo = find(minString(stillUnsorted));
+	    set(i,minString(stillUnsorted));
 	    set(moveTo,move);
-	    lastSort++;
+	    stillUnsorted++;
 	}
     }
     public String minString(int stillUnsorted){
-	String[] x =
-	String min = get(0);
-	for (int i = 0; i < size() ; i++){
+	String min = get(stillUnsorted);
+	for (int i = stillUnsorted; i < size() ; i++){
 	    if ( (get(i)).compareTo(min) < 0  ) {
 		min = get(i);
 	    }
@@ -205,6 +204,12 @@ public class SuperArray{
 	System.out.println("should be index 3: " + names.find("Ari"));
 	System.out.println("should be index 6: " + names.find("David"));
 	System.out.println("should be index -1: " + names.find("Jake"));
+
+	
+	System.out.println("Before:  " + names.toString());
+	names.selectionSort();
+	System.out.println("After:   " + names.toString());
+	
 
 	/*
 	// 2014-12-03 (in class)
