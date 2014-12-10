@@ -25,7 +25,7 @@ public class Window2 extends JFrame {
 
 	b = new JButton("Convert");
 	
-	l = new JLabel("Converter",null,JLabel.CENTER);
+	l = new JLabel("F and C Converter",null,JLabel.CENTER);
 	t = new JTextField(12);
 	c = new JCheckBox("to F");
 	d = new JCheckBox("to C");
