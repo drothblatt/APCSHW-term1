@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Window2 extends JFrame {
+public class Window2 extends JFrame implements ActionListener{
     private Container pane;
     private Container text; //
     private Container button; //
@@ -24,16 +24,32 @@ public class Window2 extends JFrame {
 	pane.setLayout(new FlowLayout());
 
 	b = new JButton("Convert");
-	
-	l = new JLabel("This is AWESOME! (lies)",null,JLabel.CENTER);
-	t = new JTextField(12);
-	c = new JCheckBox("to F");
-	d = new JCheckBox("to C");
+	l = new JLabel("F and C Converter",null,JLabel.CENTER);
+	t = new JTextField(10);
+	c = new JRadioButton("to F");
+	d = new JRadioButton("to C");
 	pane.add(l);
 	pane.add(b);
 	pane.add(t);
 	pane.add(c);
+	pane.add(d);
     }
+
+    public void actionPerformed(ActionEvent e){
+	String s = e.getActionCommand();
+	if (s.equals("doStuff")){
+	    String t = text.getText();
+	    if (){// radio button
+		// F to C
+	    } else if (){
+		// C to f
+	    }
+	    text.setText(t);
+	}
+    }
+
+
+
 
     public static void main(String[] args) {
         Window2 g = new Window2();
