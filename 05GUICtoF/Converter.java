@@ -1,6 +1,7 @@
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*; //needed for pane
+import java.text.DecimalFormat; //for rounding
 public class Converter extends JFrame implements ActionListener{
     private Container pane;
     private JButton b,clear;
@@ -12,7 +13,7 @@ public class Converter extends JFrame implements ActionListener{
 
     public Converter() {
 	this.setTitle("Celsius/Farenheit Converter");
-	this.setSize(600,100);
+	this.setSize(750,125);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -23,8 +24,8 @@ public class Converter extends JFrame implements ActionListener{
 	m = new JLabel("Converted Temperature:",null,JLabel.CENTER);
 	b = new JButton("Convert!");
 	clear = new JButton("Clear.");
-	text = new JTextField(13);
-	result = new JTextField(13);
+	text = new JTextField(25);
+	result = new JTextField(35);
 	toC = new JRadioButton("To Celsius");
 	toF = new JRadioButton("To Farenheit");
 
@@ -56,25 +57,39 @@ public class Converter extends JFrame implements ActionListener{
     //look at which command is being executed, and choose an action
     public void actionPerformed(ActionEvent e){
 	String action = e.getActionCommand();
-	//System.out.println(action);
+
+
 	if(action.equals("Convert!")){
 	    String s = text.getText();
 	    try{
-		int t = Integer.parseInt(s);
+		double t = Double.parseDouble(s);
+		result.setText("");
 		if (toC.isSelected() && toF.isSelected()){
-		    text.setText("");
-		    result.setText("Must choose one.");
-		if (toC.isSelected()){
+		    result.setText("Must choose a conversion.");
+		} else if(toC.isSelected()){
 		    t = (t-32)*(5.0/9.0);
-		    result.setText("" + t);
+		    if ( (t % 1) == 0 ){
+			int rT = (int)t;
+			result.setText("" + rT);
+		    } else{
+			t = rounding(t);
+			result.setText("" + t);		    
+		    }	  
 		} else if (toF.isSelected()){
 		    t = t*(9.0/5.0) + 32;
-		    result.setText("" + t);
+		    if ( (t % 1) == 0 ){
+			int rT = (int)t;
+			result.setText("" + rT);
+		    } else{
+			t = rounding(t);
+			result.setText("" + t);		    
+		    }
 		} else{
 		    text.setText("");
 		    result.setText("");
-		    
-	    } catch (Exception p){ //p for parseint();
+		}
+	    } catch (Exception p){ //p for parseDouble();
+		result.setText("Need number.");
 	    }
 	}
 	if(action.equals("delete")){
@@ -82,6 +97,12 @@ public class Converter extends JFrame implements ActionListener{
 	    result.setText("");
 	}
     }
+
+    public double rounding(double x){
+	DecimalFormat h = new DecimalFormat("#.#");
+	return Double.valueOf(h.format(x));
+    }
+	
 
     public static void main(String[] args) {
 	Converter c = new Converter();
