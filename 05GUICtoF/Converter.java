@@ -65,8 +65,10 @@ public class Converter extends JFrame implements ActionListener{
 		double t = Double.parseDouble(s);
 		result.setText("");
 		if (toC.isSelected() && toF.isSelected()){
+		    text.set("" + rounding(t));
 		    result.setText("Must choose a conversion.");
 		} else if(toC.isSelected()){
+		    text.set("" + rounding(t));
 		    t = (t-32)*(5.0/9.0);
 		    if ( (t % 1) == 0 ){
 			int rT = (int)t;
@@ -76,6 +78,7 @@ public class Converter extends JFrame implements ActionListener{
 			result.setText("" + t);		    
 		    }	  
 		} else if (toF.isSelected()){
+		    text.set("" + rounding(t));
 		    t = t*(9.0/5.0) + 32;
 		    if ( (t % 1) == 0 ){
 			int rT = (int)t;
@@ -85,7 +88,7 @@ public class Converter extends JFrame implements ActionListener{
 			result.setText("" + t);		    
 		    }
 		} else{
-		    text.setText("");
+		    text.set("" + rounding(t));
 		    result.setText("");
 		}
 	    } catch (Exception p){ //p for parseDouble();
