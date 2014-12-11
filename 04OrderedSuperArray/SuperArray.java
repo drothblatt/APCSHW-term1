@@ -213,7 +213,7 @@ public class SuperArray{
 
 	/*
 	// 2014-12-03 (in class)
-	//System.out.println("Success?? " + names.verifyInsertionSort());
+	// System.out.println("Success?? " + names.verifyInsertionSort());
 
 	if (args[0].equals("0")){ // use good insertionSort
 	    System.out.println("Before:  " + names.toString());
