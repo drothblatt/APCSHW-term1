@@ -13,7 +13,7 @@ public class Converter extends JFrame implements ActionListener{
 
     public Converter() {
 	this.setTitle("Celsius/Farenheit Converter");
-	this.setSize(750,125);
+	this.setSize(800,125);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -25,7 +25,7 @@ public class Converter extends JFrame implements ActionListener{
 	b = new JButton("Convert!");
 	clear = new JButton("Clear.");
 	text = new JTextField(25);
-	result = new JTextField(35);
+	result = new JTextField(40);
 	toC = new JRadioButton("To Celsius");
 	toF = new JRadioButton("To Farenheit");
 
@@ -65,34 +65,46 @@ public class Converter extends JFrame implements ActionListener{
 		double t = Double.parseDouble(s);
 		result.setText("");
 		if (toC.isSelected() && toF.isSelected()){
-		    text.set("" + rounding(t));
-		    result.setText("Must choose a conversion.");
+		    if ( (t % 1) == 0 ){
+			text.setText("" + (int)t);
+		    } else{
+			text.setText("" + rounding(t));
+		    }	  
+		    result.setText("Must Choose A Conversion.");
 		} else if(toC.isSelected()){
-		    text.set("" + rounding(t));
+		    if ( (t % 1) == 0 ){
+			text.setText("" + (int)t);
+		    } else{
+			text.setText("" + rounding(t));
+		    }	  
 		    t = (t-32)*(5.0/9.0);
 		    if ( (t % 1) == 0 ){
-			int rT = (int)t;
-			result.setText("" + rT);
+			result.setText("" + (int)t);
 		    } else{
-			t = rounding(t);
-			result.setText("" + t);		    
+			result.setText("" + rounding(t));		    
 		    }	  
 		} else if (toF.isSelected()){
-		    text.set("" + rounding(t));
+		    if ( (t % 1) == 0 ){
+			text.setText("" + (int)t);
+		    } else{
+			text.setText("" + rounding(t));
+		    }	  
 		    t = t*(9.0/5.0) + 32;
 		    if ( (t % 1) == 0 ){
-			int rT = (int)t;
-			result.setText("" + rT);
+			result.setText("" + (int)t );
 		    } else{
-			t = rounding(t);
-			result.setText("" + t);		    
+			result.setText("" + rounding(t));		    
 		    }
 		} else{
-		    text.set("" + rounding(t));
-		    result.setText("");
+		    if ( (t % 1) == 0 ){
+			text.setText("" + (int) t);
+		    } else{
+			text.setText("" + rounding(t));
+		    }
+		    result.setText("No Conversion Type Selected");
 		}
 	    } catch (Exception p){ //p for parseDouble();
-		result.setText("Need number.");
+		result.setText("Need Number.");
 	    }
 	}
 	if(action.equals("delete")){
