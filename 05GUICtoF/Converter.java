@@ -11,7 +11,7 @@ public class Converter extends JFrame implements ActionListener{
     private JRadioButton toC, toF;
 
     public Converter() {
-	this.setTitle("Who is the doctor!");
+	this.setTitle("Celsius/Farenheit Converter");
 	this.setSize(600,100);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -35,17 +35,17 @@ public class Converter extends JFrame implements ActionListener{
 	clear.addActionListener(this);
 
 	buttons = new Container();
-	buttons.setLayout(new FlowLayout());
+	buttons.setLayout(new GridLayout());
 	buttons.add(clear);
 	buttons.add(b);
 	buttons.add(toC);
 	buttons.add(toF);
  				
 	textyStuff = new Container();
-	textyStuff.setLayout(new FlowLayout());
+	textyStuff.setLayout(new GridLayout());
 	textyStuff.add(l);
-	textyStuff.add(m);
 	textyStuff.add(text);
+	textyStuff.add(m);
 	textyStuff.add(result);
 
 	//add the 2 containers
@@ -61,12 +61,19 @@ public class Converter extends JFrame implements ActionListener{
 	    String s = text.getText();
 	    try{
 		int t = Integer.parseInt(s);
+		if (toC.isSelected() && toF.isSelected()){
+		    text.setText("");
+		    result.setText("Must choose one.");
 		if (toC.isSelected()){
-		    s = "0";
+		    t = (t-32)*(5.0/9.0);
+		    result.setText("" + t);
 		} else if (toF.isSelected()){
-		    s = "1";
-		}
-		result.setText(s);
+		    t = t*(9.0/5.0) + 32;
+		    result.setText("" + t);
+		} else{
+		    text.setText("");
+		    result.setText("");
+		    
 	    } catch (Exception p){ //p for parseint();
 	    }
 	}
