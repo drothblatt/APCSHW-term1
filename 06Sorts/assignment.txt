@@ -1,0 +1,8 @@
+06Sorts --> array of int 
+		
+
+	- ** bubble sort
+	- Selection (from SuperArray)
+	- Insertion (from SuperArray)
+
+
