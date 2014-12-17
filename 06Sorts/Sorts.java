@@ -23,9 +23,15 @@ public class Sorts{
     public static void selection(int[] c){
     }
 
-
-
-
+    public static String toString(int[] c){
+	String result = "[ "; 
+	for (int i = 0; i < c.length; i++){
+	    result += c[i] + " ";
+	}
+	result += " ]";
+	return result;
+    }
+	   
     public static void main(String[]args){
 	Random r = new Random();
 	int[] c = new int[20];
@@ -33,7 +39,7 @@ public class Sorts{
 	    c[i] = r.nextInt(61) - 10;
 	}
 	bubble(c);
-	System.out.println(c.toString());
+	System.out.println(toString(c));
     }
 }
 	    
