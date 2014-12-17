@@ -1,4 +1,8 @@
 import java.util.Random;
+import java.util.Arrays;
+
+// THIS FILE HAS A MAIN THAT CHECKS THE ACTUAL FUNCTIONALITY OF THE FXNS!
+// THE SEPERATE DRIVER IN THIS REPO IS TO TEST THE SPEEDS OF THE FXNS!
 
 public class Sorts{
     public static void bubble(int[] c){
@@ -18,10 +22,18 @@ public class Sorts{
     }
 
     public static void insertion(int[] c){
+	for (int i = 1; i < c.length; i++){
+	    int currentVal = c[i];
+	    int j;
+	    for ( j = i; j > 0  && currentVal < c[j-1]; j--){
+		c[j] = c[j-1];
+	    }
+	    c[j] = currentVal;
+	}
     }
 
     public static void selection(int[] c){
-	for (int i = 0; i < c.length; i++){
+	for (int i = 0; i < c.length-1; i++){
 	    int indOfMin = i;
 	    for (int j = i + 1; j < c.length; j++){ // finds index of smallest val
 		if (c[j] < c[indOfMin]){
@@ -59,6 +71,9 @@ public class Sorts{
 
 	bubble(bs);
 	System.out.println("Bubble Sort: "    + toString(bs));
+
+	insertion(is);
+	System.out.println("Insertion Sort: " + toString(is));
 
 	selection(ss);
 	System.out.println("Selection Sort: " + toString(ss));
