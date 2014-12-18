@@ -1,5 +1,7 @@
 import java.util.Random;
 import java.util.Arrays;
+import java.util.ArrayList<E>;
+
 
 // THIS FILE HAS A MAIN THAT CHECKS THE ACTUAL FUNCTIONALITY OF THE FXNS!
 // THE SEPERATE DRIVER IN THIS REPO IS TO TEST THE SPEEDS OF THE FXNS!
@@ -47,7 +49,29 @@ public class Sorts{
     }
 
     public static void radix(int[] c){
+	ArrayList<Integer> sortArray = new ArrayList<Integer>(10);
+	int maxVal = c[0];
+
+	for (int i = 0; i < c.length; i++){
+	    if (c[i] > maxVal){
+		maxVal = c[i];
+	    }
+	}
+	String maxValS = "" + maxVal;
+	int passes = maxValS.length();
+
+	for (int i = 0; i < 10; i++){
+	    ArrayList<Integer> subSortArray = new ArrayList<Integer>;
+	    sortArray.add(i, subSortArray);
+	}
+	while (passes > 0){
+	}
+
 	
+	
+	
+	
+
     }
 
     public static String name(){
