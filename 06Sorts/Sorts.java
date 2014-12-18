@@ -46,6 +46,17 @@ public class Sorts{
 	}
     }
 
+    public static void radix(int[] c){
+	
+    }
+
+    public static String name(){
+	return "Rothblatt,David";
+    }
+    public static int period(){
+	return 6;
+    }
+
 
     public static String toString(int[] c){
 	String result = "[ "; 
