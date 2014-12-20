@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Arrays;
-import java.util.ArrayList<E>;
+import java.util.ArrayList;
 
 
 // THIS FILE HAS A MAIN THAT CHECKS THE ACTUAL FUNCTIONALITY OF THE FXNS!
@@ -62,15 +62,16 @@ public class Sorts{
 	while (passes < maxPass){
 	    ArrayList[] buckets = new ArrayList[10];
 	    for (int i = 0; i < 10; i++){
-		buckets[k] = new ArrayList<Integer>(); 
+		buckets[i] = new ArrayList(); 
 	    }
 	    for (int i = 0; i < c.length; i++){
-		buckets[((arr[c]/(10*passes)) % 10)].add(arr[c]);
+		buckets[((c[i]/(10*passes)) % 10)].add(c[i]);
 	    }
 	    int ind = 0;
 	    for (int j = 0; j < buckets.length; j++) {
-		for (int k = 0; k < buckets[j].length; k++){
-		    c[ind] = buckets[j].get(k);
+		for (int k = 0; k < buckets[j].size(); k++){
+		    int n = buckets[j].get(k);
+		    c[ind] = n; 
 		}
 	    }
 	    passes++;
@@ -100,13 +101,15 @@ public class Sorts{
 	int[] bs = new int[20];
 	int[] is = new int[20];
 	int[] ss = new int[20];
+	int[] rs = new int[20];
 
 	for (int i = 0; i < 20; i++){
 	    bs[i] = r.nextInt(61) - 10;
 	    is[i] = r.nextInt(61) - 10;
 	    ss[i] = r.nextInt(61) - 10;
+	    rs[i] = r.nextInt(60) + 1;
 	}
-
+	/*
 	bubble(bs);
 	System.out.println("Bubble Sort: "    + toString(bs));
 
@@ -115,6 +118,11 @@ public class Sorts{
 
 	selection(ss);
 	System.out.println("Selection Sort: " + toString(ss));
+	*/
+
+	radix(rs);
+	System.out.println("Radix Sort: " + toString(rs));
+
 
     }
 }
