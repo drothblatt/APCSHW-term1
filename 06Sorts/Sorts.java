@@ -49,29 +49,32 @@ public class Sorts{
     }
 
     public static void radix(int[] c){
-	ArrayList<Integer> sortArray = new ArrayList<Integer>(10);
 	int maxVal = c[0];
-
 	for (int i = 0; i < c.length; i++){
 	    if (c[i] > maxVal){
 		maxVal = c[i];
 	    }
 	}
 	String maxValS = "" + maxVal;
-	int passes = maxValS.length();
+	int maxPass = maxValS.length();
+	int passes = 0;
 
-	for (int i = 0; i < 10; i++){
-	    ArrayList<Integer> subSortArray = new ArrayList<Integer>;
-	    sortArray.add(i, subSortArray);
+	while (passes < maxPass){
+	    ArrayList[] buckets = new ArrayList[10];
+	    for (int i = 0; i < 10; i++){
+		buckets[k] = new ArrayList<Integer>(); 
+	    }
+	    for (int i = 0; i < c.length; i++){
+		buckets[((arr[c]/(10*passes)) % 10)].add(arr[c]);
+	    }
+	    int ind = 0;
+	    for (int j = 0; j < buckets.length; j++) {
+		for (int k = 0; k < buckets[j].length; k++){
+		    c[ind] = buckets[j].get(k);
+		}
+	    }
+	    passes++;
 	}
-	while (passes > 0){
-	}
-
-	
-	
-	
-	
-
     }
 
     public static String name(){
